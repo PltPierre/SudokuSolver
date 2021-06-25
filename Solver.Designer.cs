@@ -148,6 +148,8 @@
             this.txt82 = new System.Windows.Forms.TextBox();
             this.txt81 = new System.Windows.Forms.TextBox();
             this.txt80 = new System.Windows.Forms.TextBox();
+            this.btnVerify = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSolve
@@ -1119,11 +1121,31 @@
             this.txt80.Size = new System.Drawing.Size(30, 31);
             this.txt80.TabIndex = 74;
             // 
+            // btnVerify
+            // 
+            this.btnVerify.Location = new System.Drawing.Point(416, 204);
+            this.btnVerify.Name = "btnVerify";
+            this.btnVerify.Size = new System.Drawing.Size(177, 45);
+            this.btnVerify.TabIndex = 120;
+            this.btnVerify.Text = "Verify";
+            this.btnVerify.UseVisualStyleBackColor = true;
+            // 
+            // btnNew
+            // 
+            this.btnNew.Location = new System.Drawing.Point(416, 138);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(177, 45);
+            this.btnNew.TabIndex = 121;
+            this.btnNew.Text = "New Game";
+            this.btnNew.UseVisualStyleBackColor = true;
+            // 
             // Solver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(628, 405);
+            this.Controls.Add(this.btnNew);
+            this.Controls.Add(this.btnVerify);
             this.Controls.Add(this.txt88);
             this.Controls.Add(this.txt87);
             this.Controls.Add(this.txt86);
@@ -1373,5 +1395,7 @@
         private System.Windows.Forms.TextBox txt82;
         private System.Windows.Forms.TextBox txt81;
         private System.Windows.Forms.TextBox txt80;
+        private System.Windows.Forms.Button btnVerify;
+        private System.Windows.Forms.Button btnNew;
     }
 }
