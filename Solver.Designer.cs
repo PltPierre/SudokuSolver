@@ -66,7 +66,7 @@
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.lblResult = new System.Windows.Forms.Label();
             this.txt00 = new System.Windows.Forms.TextBox();
             this.txt01 = new System.Windows.Forms.TextBox();
             this.txt02 = new System.Windows.Forms.TextBox();
@@ -460,13 +460,13 @@
             this.label37.Size = new System.Drawing.Size(27, 105);
             this.label37.TabIndex = 119;
             // 
-            // label19
+            // lblResult
             // 
-            this.label19.BackColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(54, 51);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(324, 333);
-            this.label19.TabIndex = 101;
+            this.lblResult.BackColor = System.Drawing.Color.Black;
+            this.lblResult.Location = new System.Drawing.Point(54, 51);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(324, 333);
+            this.lblResult.TabIndex = 101;
             // 
             // txt00
             // 
@@ -1129,6 +1129,7 @@
             this.btnVerify.TabIndex = 120;
             this.btnVerify.Text = "Verify";
             this.btnVerify.UseVisualStyleBackColor = true;
+            this.btnVerify.Click += new System.EventHandler(this.btnVerify_Click);
             // 
             // btnNew
             // 
@@ -1227,7 +1228,7 @@
             this.Controls.Add(this.txt02);
             this.Controls.Add(this.txt01);
             this.Controls.Add(this.txt00);
-            this.Controls.Add(this.label19);
+            this.Controls.Add(this.lblResult);
             this.Controls.Add(this.label37);
             this.Controls.Add(this.label36);
             this.Controls.Add(this.label35);
@@ -1313,7 +1314,7 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.TextBox txt00;
         private System.Windows.Forms.TextBox txt01;
         private System.Windows.Forms.TextBox txt02;

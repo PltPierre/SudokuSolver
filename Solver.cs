@@ -12,10 +12,13 @@ namespace SudokuSolver
 {
     public partial class Solver : Form
     {
-        public static int[,] board;
+        public static int[,] unsolvedBoard;
+        public static int[,] solvedBoard;
 
         public Solver()
         {
+            unsolvedBoard = new int[9, 9];
+
             InitializeComponent();
             foreach (TextBox c in GetTextBoxes())
             {
@@ -59,27 +62,27 @@ namespace SudokuSolver
 
         private void btnSolve_Click(object sender, EventArgs e)
         {
-            board = new int[9, 9];
+            solvedBoard = new int[9, 9];
 
             foreach (TextBox c in GetTextBoxes())
             {
                 if(c.Text=="")
                 {
-                    board[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = 0;
+                    solvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = 0;
                 }
                 else
                 {
-                    board[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = Int32.Parse(c.Text);
+                    solvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = Int32.Parse(c.Text);
                 }
             }
 
-            Program.setBoard(board);
+            Program.setBoard(unsolvedBoard);
             Program.SolveSudoku();
-            board = Program.getBoard();
+            solvedBoard = Program.getBoard();
 
             foreach (TextBox c in GetTextBoxes())
             {
-                c.Text = "" + board[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))];
+                c.Text = "" + solvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))];
             }
         }
 
@@ -101,6 +104,70 @@ namespace SudokuSolver
             foreach (TextBox c in GetTextBoxes())
             {
                 c.Text = string.Empty;
+            }
+        }
+
+        private void btnVerify_Click(object sender, EventArgs e)
+        {
+            solvedBoard = new int[9, 9];
+            unsolvedBoard = new int[9, 9];
+
+            foreach (TextBox c in GetTextBoxes())
+            {
+                if (c.Text == "")
+                {
+                    unsolvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = 0;
+                    solvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = 0;
+
+                }
+                else
+                {
+                    unsolvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = Int32.Parse(c.Text);
+                    solvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = Int32.Parse(c.Text);
+
+                }
+            }
+
+            Program.setBoard(solvedBoard);
+            Program.SolveSudoku();
+            solvedBoard = Program.getBoard();
+
+            bool verified = true;
+
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (unsolvedBoard[i, j] != solvedBoard[i, j])
+                    {
+                        verified = false;
+                    }
+                }
+            }
+
+
+            if(verified)
+            {
+                lblResult.BackColor = Color.Green;
+            }
+            else
+            {
+                lblResult.BackColor = Color.Red;
+            }
+        }
+
+        private void printArray(int[,] arr)
+        {
+            int rowLength = arr.GetLength(0);
+            int colLength = arr.GetLength(1);
+
+            for (int i = 0; i < rowLength; i++)
+            {
+                for (int j = 0; j < colLength; j++)
+                {
+                    Console.Write(string.Format("{0} ", arr[i, j]));
+                }
+                Console.Write(Environment.NewLine + Environment.NewLine);
             }
         }
     }
