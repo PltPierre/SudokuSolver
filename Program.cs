@@ -32,6 +32,69 @@ namespace SudokuSolver
             return Program.board;
         }
 
+        public static int[,] newBoard()
+        {
+            board = new int[9, 9];
+
+            for(int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    board[i, j] = 0;
+                }
+            }
+
+            var ran = new Random();
+            int row;
+            int col;
+            int num;
+
+            for (int k = 0; k < 5; k++)
+            {
+                row = ran.Next(0, 9);
+                col = ran.Next(0, 9);
+                num = ran.Next(1, 10);
+
+                if (k == 0)
+                {
+                    board[row, col] = num;
+                }
+
+                while(!isValid(row, col, num) && board[row, col] == 0)
+                {
+                    row = ran.Next(0, 9);
+                    col = ran.Next(0, 9);
+                    num = ran.Next(1, 10);
+                }
+
+                board[row, col] = num;
+
+            }
+
+            Program.SolveSudoku();
+
+            for(int h = 0; h < 63; h++)
+            {
+                row = ran.Next(0, 9);
+                col = ran.Next(0, 9);
+
+                if (h == 0)
+                {
+                    board[row, col] = 0;
+                }
+
+                while (board[row, col] == 0)
+                {
+                    row = ran.Next(0, 9);
+                    col = ran.Next(0, 9);
+                }
+
+                board[row, col] = 0;
+            }
+
+            return board;
+        }
+
         public static void printBoard()
         {
             Console.WriteLine("-------------------------------------------------");

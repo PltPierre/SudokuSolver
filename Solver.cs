@@ -62,6 +62,7 @@ namespace SudokuSolver
 
         private void btnSolve_Click(object sender, EventArgs e)
         {
+            lblResult.BackColor = Color.Black;
             solvedBoard = new int[9, 9];
 
             foreach (TextBox c in GetTextBoxes())
@@ -101,6 +102,8 @@ namespace SudokuSolver
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+
+            lblResult.BackColor = Color.Black;
             foreach (TextBox c in GetTextBoxes())
             {
                 c.Text = string.Empty;
@@ -168,6 +171,25 @@ namespace SudokuSolver
                     Console.Write(string.Format("{0} ", arr[i, j]));
                 }
                 Console.Write(Environment.NewLine + Environment.NewLine);
+            }
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            lblResult.BackColor = Color.Black;
+            int[,] board_new = Program.newBoard();
+
+            foreach (TextBox c in GetTextBoxes())
+            {
+                int n = board_new[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))];
+                if (n == 0)
+                {
+                    c.Text = "";
+                }
+                else
+                {
+                    c.Text = "" + board_new[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))];
+                }
             }
         }
     }

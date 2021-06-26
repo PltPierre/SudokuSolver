@@ -1139,6 +1139,7 @@
             this.btnNew.TabIndex = 121;
             this.btnNew.Text = "New Game";
             this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // Solver
             // 
