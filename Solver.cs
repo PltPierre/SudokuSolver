@@ -77,7 +77,7 @@ namespace SudokuSolver
                 }
             }
 
-            Program.setBoard(unsolvedBoard);
+            Program.setBoard(solvedBoard);
             Program.SolveSudoku();
             solvedBoard = Program.getBoard();
 
@@ -112,7 +112,6 @@ namespace SudokuSolver
 
         private void btnVerify_Click(object sender, EventArgs e)
         {
-            solvedBoard = new int[9, 9];
             unsolvedBoard = new int[9, 9];
 
             foreach (TextBox c in GetTextBoxes())
@@ -120,20 +119,30 @@ namespace SudokuSolver
                 if (c.Text == "")
                 {
                     unsolvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = 0;
-                    solvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = 0;
-
                 }
                 else
                 {
                     unsolvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = Int32.Parse(c.Text);
-                    solvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = Int32.Parse(c.Text);
-
                 }
             }
 
-            Program.setBoard(solvedBoard);
+            Program.setBoard(unsolvedBoard);
+
             Program.SolveSudoku();
+
             solvedBoard = Program.getBoard();
+
+            foreach (TextBox c in GetTextBoxes())
+            {
+                if (c.Text == "")
+                {
+                    unsolvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = 0;
+                }
+                else
+                {
+                    unsolvedBoard[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))] = Int32.Parse(c.Text);
+                }
+            }
 
             bool verified = true;
 
@@ -141,7 +150,7 @@ namespace SudokuSolver
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    if (unsolvedBoard[i, j] != solvedBoard[i, j])
+                    if (unsolvedBoard[i, j] != unsolvedBoard[i, j] || unsolvedBoard[i,j] == 0)
                     {
                         verified = false;
                     }
@@ -191,6 +200,8 @@ namespace SudokuSolver
                     c.Text = "" + board_new[Int32.Parse(c.Name.Substring(3, 1)), Int32.Parse(c.Name.Substring(4, 1))];
                 }
             }
+
+            unsolvedBoard = board_new;
         }
     }
 }
